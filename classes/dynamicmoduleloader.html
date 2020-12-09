@@ -1,0 +1,430 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DynamicModuleLoader | @21epub/dynamic-loader</title>
+	<meta name="description" content="Documentation for @21epub/dynamic-loader">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@21epub/dynamic-loader</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../index.html">Globals</a>
+				</li>
+				<li>
+					<a href="dynamicmoduleloader.html">DynamicModuleLoader</a>
+				</li>
+			</ul>
+			<h1>Class DynamicModuleLoader&lt;S&gt;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p> Dynamic load modules by string types</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>example</dt>
+						<dd><pre><code>  <span class="hljs-keyword">import</span> { DynamicModuleLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@21epub/dynamic-loader&#x27;</span>
+
+  <span class="hljs-keyword">const</span> loaders = [
+      {
+         modules: [<span class="hljs-string">&quot;module1&quot;</span>, <span class="hljs-string">&quot;module2&quot;</span>],
+         loader: <span class="hljs-keyword">async</span> () =&gt; {
+               <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;url/to/module1&#x27;</span>);
+               <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;url/to/module2&#x27;</span>)
+         }
+      },
+      {
+         modules: <span class="hljs-string">&#x27;module3&#x27;</span>,
+         loader: <span class="hljs-keyword">async</span> () =&gt; {
+               <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;url/to/module3&#x27;</span>);
+         }
+      }
+  ]
+
+  <span class="hljs-keyword">const</span> dynamicLoader = <span class="hljs-keyword">new</span> DynamicModuleLoader(loaders)</code></pre>
+							<a href="#you-can-also-register-other-loaders-after-init" id="you-can-also-register-other-loaders-after-init" style="color: inherit; text-decoration: none;">
+								<h3>You can also register other loaders after init</h3>
+							</a>
+							<pre><code>  dynamicLoader.register([<span class="hljs-string">&#x27;module4&#x27;</span>], <span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;url/to/module4&#x27;</span>)
+  })</code></pre>
+							<a href="#load-modules-whenever-in-need-callbacks-are-module-returns-" id="load-modules-whenever-in-need-callbacks-are-module-returns-" style="color: inherit; text-decoration: none;">
+								<h3>Load modules whenever in need (callbacks are module returns )</h3>
+							</a>
+							<a href="#return-data-should-be-considered-by-your-async-function" id="return-data-should-be-considered-by-your-async-function" style="color: inherit; text-decoration: none;">
+								<h4>Return data should be considered by your async function</h4>
+							</a>
+							<pre><code>  dynamicLoader.loadAll().then( <span class="hljs-function"><span class="hljs-params">callbacks</span> =&gt;</span>  <span class="hljs-built_in">console</span>.log(callbacks))</code></pre>
+							<a href="#load-specific-module-as-you-wish" id="load-specific-module-as-you-wish" style="color: inherit; text-decoration: none;">
+								<h3>Load specific module as you wish</h3>
+							</a>
+							<pre><code>  dynamicLoader.load([<span class="hljs-string">&#x27;module1&#x27;</span>,<span class="hljs-string">&#x27;module2&#x27;</span>]).then(<span class="hljs-function"><span class="hljs-params">callbacks</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(callbacks ))</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>S<span class="tsd-signature-symbol">: </span><a href="../index.html#loadermoduleparms" class="tsd-signature-type">LoaderModuleParms</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DynamicModuleLoader</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="dynamicmoduleloader.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dynamicmoduleloader.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dynamicmoduleloader.html#getloadlist" class="tsd-kind-icon">get<wbr>Load<wbr>List</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dynamicmoduleloader.html#load" class="tsd-kind-icon">load</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dynamicmoduleloader.html#loadall" class="tsd-kind-icon">load<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="dynamicmoduleloader.html#register" class="tsd-kind-icon">register</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Dynamic<wbr>Module<wbr>Loader<span class="tsd-signature-symbol">(</span>loaderModules<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">S</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="dynamicmoduleloader.html" class="tsd-signature-type">DynamicModuleLoader</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/21epub/dynamic-loader/blob/239565c/src/DynamicModuleLoader.ts#L81">DynamicModuleLoader.ts:81</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> loaderModules: <a href="" class="tsd-signature-type">S</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Initialized module loaders</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="dynamicmoduleloader.html" class="tsd-signature-type">DynamicModuleLoader</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>module<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/21epub/dynamic-loader/blob/239565c/src/DynamicModuleLoader.ts#L196">DynamicModuleLoader.ts:196</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get a returned data for a specified module
+									Undefined when this module has not finish loading</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>module: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getloadlist" class="tsd-anchor"></a>
+					<h3>get<wbr>Load<wbr>List</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Load<wbr>List<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../index.html#loadermodules" class="tsd-signature-type">LoaderModules</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/21epub/dynamic-loader/blob/239565c/src/DynamicModuleLoader.ts#L187">DynamicModuleLoader.ts:187</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p> get the list of registered modules</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../index.html#loadermodules" class="tsd-signature-type">LoaderModules</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="load" class="tsd-anchor"></a>
+					<h3>load</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">(</span>moduleOrModules<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/21epub/dynamic-loader/blob/239565c/src/DynamicModuleLoader.ts#L165">DynamicModuleLoader.ts:165</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load one or mutiple modules</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>moduleOrModules: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="loadall" class="tsd-anchor"></a>
+					<h3>load<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/21epub/dynamic-loader/blob/239565c/src/DynamicModuleLoader.ts#L180">DynamicModuleLoader.ts:180</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p> Load All the modules that have been registered or initialized by this ModuleLoader</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="register" class="tsd-anchor"></a>
+					<h3>register</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">register&lt;T&gt;<span class="tsd-signature-symbol">(</span>moduleOrModules<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, promiseFn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/21epub/dynamic-loader/blob/239565c/src/DynamicModuleLoader.ts#L114">DynamicModuleLoader.ts:114</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Register one or mutiple lazyload module</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><a href="../index.html#promisefn" class="tsd-signature-type">PromiseFn</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>moduleOrModules: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>promiseFn: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../index.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-has-type-parameter">
+						<a href="dynamicmoduleloader.html" class="tsd-kind-icon">Dynamic<wbr>Module<wbr>Loader</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="dynamicmoduleloader.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="dynamicmoduleloader.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="dynamicmoduleloader.html#getloadlist" class="tsd-kind-icon">get<wbr>Load<wbr>List</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="dynamicmoduleloader.html#load" class="tsd-kind-icon">load</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="dynamicmoduleloader.html#loadall" class="tsd-kind-icon">load<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="dynamicmoduleloader.html#register" class="tsd-kind-icon">register</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/props.html" class="tsd-kind-icon">Props</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#extractarrayitem" class="tsd-kind-icon">Extract<wbr>Array<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#extractmodule" class="tsd-kind-icon">Extract<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#extractpromise" class="tsd-kind-icon">Extract<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#loadedloader" class="tsd-kind-icon">Loaded<wbr>Loader</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#loadermoduleparms" class="tsd-kind-icon">Loader<wbr>Module<wbr>Parms</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#loadermodules" class="tsd-kind-icon">Loader<wbr>Modules</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#modulearrayitem" class="tsd-kind-icon">Module<wbr>Array<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#moduleparam" class="tsd-kind-icon">Module<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#promisefn" class="tsd-kind-icon">Promise<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#pmap" class="tsd-kind-icon">p<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../index.html#demo1" class="tsd-kind-icon">Demo1</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../index.html#demo3" class="tsd-kind-icon">Demo3</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
