@@ -50,7 +50,7 @@ npm install --save @21epub/dynamic-loader
 
 ```
 
-For Details: See Documents
+### [Documents](https://21epub.github.io/dynamic-loader/)
 
 ## Developing and running on localhost
 

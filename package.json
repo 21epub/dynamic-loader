@@ -4,7 +4,7 @@
   "description": "Dynamic load module on demand",
   "author": "21epub",
   "license": "MIT",
-  "homepage": "https://github.com/21epub/dynamic-loader",
+  "homepage": "https://21epub.github.io/dynamic-loader/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/21epub/dynamic-loader.git"
@@ -34,7 +34,9 @@
     "release:alpha": "npm run release -- --prerelease alpha",
     "commit": "lint-staged && npx git-cz",
     "prepublishOnly": "run-s lint test build",
-    "install-peers": "npm-install-peers"
+    "install-peers": "npm-install-peers",
+    "doc": "npx typedoc --options ./typedoc.js ./src",
+    "deploy": "npx gh-pages -d ./docs"
   },
   "lint-staged": {
     "**/*.less": "stylelint --fix --syntax less",
