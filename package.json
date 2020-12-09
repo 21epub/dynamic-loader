@@ -1,6 +1,6 @@
 {
   "name": "@21epub/dynamic-loader",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Dynamic load module on demand",
   "author": "21epub",
   "license": "MIT",
@@ -48,8 +48,7 @@
       "pre-commit": "lint-staged"
     }
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "dependencies": {
     "p-map": "4.0.0"
   },
